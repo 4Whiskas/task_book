@@ -93,4 +93,19 @@ class Utils {
     return short;
   }
 
+  static String convertToTitle(String long)
+  {
+    String short = '';
+
+    if(long.length>20)
+    {
+      short = long.substring(0, 50);
+      short+='...';
+    }
+    else{
+      short = long;
+    }
+    return short;
+  }
+
 }

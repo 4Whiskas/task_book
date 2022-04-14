@@ -81,6 +81,7 @@ class TaskScene extends StatelessWidget {
                 TextField(
                   controller: Controllers.titleCreatingNote,
                   style: AppTextStyles.baseText,
+                  maxLength: 20,
                   decoration: InputDecoration(
                     label: const Text(
                       AppStrings.title,

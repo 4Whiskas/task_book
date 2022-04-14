@@ -75,7 +75,7 @@ class Task extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     Text(
-                      note.title,
+                      Utils.convertToTitle(note.title),
                       style: AppTextStyles.headerText,
                     ),
                     Text(
