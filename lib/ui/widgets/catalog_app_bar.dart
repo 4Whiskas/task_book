@@ -31,7 +31,7 @@ class _CatalogAppBarState extends State<CatalogAppBar> {
           TextButton(
               onPressed: () {
                 setState(() {
-                  _cubit.loadNotes("ToDo");
+                  _cubit.loadNotes(state: "ToDo", context: context);
                 });
               },
               style: _cubit.currentTable == 0
@@ -50,7 +50,7 @@ class _CatalogAppBarState extends State<CatalogAppBar> {
           TextButton(
               onPressed: () {
                 setState(() {
-                  _cubit.loadNotes("Doing");
+                  _cubit.loadNotes(state: "Doing", context: context);
                 });
               },
               style: _cubit.currentTable == 1
@@ -67,7 +67,7 @@ class _CatalogAppBarState extends State<CatalogAppBar> {
           TextButton(
               onPressed: () {
                 setState(() {
-                  _cubit.loadNotes("Done");
+                  _cubit.loadNotes(state: "Done", context: context);
                 });
               },
               style: _cubit.currentTable == 2

@@ -8,18 +8,15 @@ import 'package:task_meneger/data/database/app_database.dart';
 import '../../resources/app_strings.dart';
 
 class CatalogCubit extends Cubit<CatalogState> {
-  CatalogCubit() : super(CatalogLoadingState());
+  CatalogCubit() : super(CatalogEmptyState());
   List<NotesTableData> notesList = [];
   static AppDatabase? appDatabase;
   int currentTable = 0;
 
-  Future<void> init({required BuildContext context}) async {
-    appDatabase = await Provider.of<AppDatabase>(context, listen: false);
-  }
-
-  Future<void> loadNotes(String state) async {
+  Future<void> loadNotes({required String state, required BuildContext context}) async {
     emit(CatalogLoadingState());
     try {
+      appDatabase = await Provider.of<AppDatabase>(context, listen: false);
       notesList = await appDatabase!.getTypedNotes(state);
       switch (state) {
         case 'ToDo':

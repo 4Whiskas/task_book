@@ -17,7 +17,6 @@ class CatalogScene extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<CatalogCubit, CatalogState>(builder: (context, state) {
       var _cubit = context.read<CatalogCubit>();
-      _cubit.init(context: context);
       var screenSize = MediaQuery.of(context).size;
       if (state is CatalogEmptyState) {
         return Scaffold(

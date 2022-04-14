@@ -8,15 +8,13 @@ import 'package:task_meneger/ui/scene/task_scene.dart';
 
 class AppNavigation extends StatelessWidget{
   const AppNavigation({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NavigationCubit, NavigationState>(
       builder: (context, state) {
         if(state is NavigationCatalogState)
           {
-            context.read<CatalogCubit>().init(context: context);
-            context.read<CatalogCubit>().loadNotes('ToDo');
+            context.read<CatalogCubit>().loadNotes(state: 'ToDo', context: context);
           }
         return Navigator(
           pages: [
