@@ -1,0 +1,11 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+CatalogScene -> TaskScene: Переход на страницу
+TaskScene ->TaskCubit: Функция создания задачи
+TaskCubit -> AppDatabase: Запрос создания задачи
+AppDatabase -> CatalogCubit: Список задач
+CatalogCubit -> CatalogScene: Список задач
+@enduml

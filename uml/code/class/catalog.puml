@@ -1,0 +1,47 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class CatalogState
+class CatalogLoadingState
+class CatalogLoadedState
+class CatalogErrorState{
+    String error
+}
+class CatalogEmptyState
+class CatalogCubit{
+    List<Note> noteList;
+    loadNotes();
+    updateNode();
+    updateData();
+}
+class CatalogScene
+class BottomTaskView
+class CatalogAppBar
+class NoteAddButton
+class Task
+class AppButtonStyle
+class AppColors
+class AppStrings
+class AppTextStyles
+class Utils{
+    determineTaskState();
+    convertToShort();
+    dateFormatter();
+    convertToTitle();
+}
+CatalogLoadingState -|>  CatalogState
+CatalogLoadedState --|> CatalogState
+CatalogEmptyState --|> CatalogState
+CatalogErrorState ---|> CatalogState
+CatalogCubit ----> CatalogState
+CatalogScene --> CatalogCubit
+CatalogScene -o BottomTaskView
+CatalogScene ---o CatalogAppBar
+CatalogScene ---o NoteAddButton
+CatalogScene --o Task
+Utils -o CatalogScene
+AppButtonStyle --o CatalogScene
+AppColors --o CatalogScene
+AppStrings --o CatalogScene
+AppTextStyles --o CatalogScene
+@enduml

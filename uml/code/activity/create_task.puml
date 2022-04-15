@@ -1,0 +1,36 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+
+partition Страница_просмотра_задач
+    start
+    :Добавить задачу<
+}
+partition Страница_создания_задачи
+     if(Заполнение заголовка)
+     else ()
+        :Назад<
+        stop
+     endif
+     if(Заполнение описания)
+          else ()
+             :Назад<
+             stop
+          endif
+          if(Выбор дедлайна)
+               else ()
+                  :Назад<
+                  stop
+               endif
+     if () then
+          :Создать запись<
+          :Сохранение записи;
+        else ()
+          :Назад<
+        endif
+        stop
+}
+
+
+
+@enduml

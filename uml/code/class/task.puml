@@ -1,0 +1,49 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class TaskState
+
+class TaskLoadingState
+class TaskLoadedState
+class TaskCreated
+class TaskErrorState{
+    String error
+}
+class TaskEmptyState
+class TaskCubit{
+    Note? noteList;
+    createTask();
+    updateTask();
+    clearControllers();
+}
+class TaskScene
+class AppButtonStyle
+class AppColors
+class AppStrings
+class AppTextStyles
+class Controllers{
+TextEditingController titleCreatingNote
+TextEditingController descriptionCreatingNote
+String dateController
+}
+class Utils{
+    determineTaskState();
+    convertToShort();
+    dateFormatter();
+    convertToTitle();
+}
+
+TaskLoadingState -|>  TaskState
+TaskLoadedState --|> TaskState
+TaskCreated ---|> TaskState
+TaskErrorState ---|> TaskState
+TaskEmptyState --|> TaskState
+TaskCubit ----> TaskState
+TaskScene --> TaskCubit
+Utils -o TaskScene
+Controllers --O TaskScene
+AppButtonStyle --o TaskScene
+AppColors ---o TaskScene
+AppStrings ---o TaskScene
+AppTextStyles --o TaskScene
+@enduml

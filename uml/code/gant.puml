@@ -1,0 +1,27 @@
+@startgantt
+'https://plantuml.com/gantt-diagram
+
+language ru
+Project starts 2021-12-01
+
+[Разработка UX] as [UX] lasts 3 days
+
+[Разработка UI] as [UI] lasts 3 days and starts at 2021-12-4
+
+[Тестирование UI/UX] lasts 3 days and starts at 2021-12-7
+
+[Изучение ORM Drift для SQLite] lasts 3 days and starts at 2021-12-10
+
+[Реализация базы данных] lasts 4 days and starts at 2021-12-13
+
+[Тестирование базы данных] lasts 3 days and starts at 2021-12-17
+
+[Изучение библиотек для управления состоянием приложения] lasts 3 days and starts at 2021-12-20
+
+[Подключение библиотек к UI] lasts 4 days and starts at 2021-12-23
+
+[Тестирование приложения] lasts 3 days and starts at 2021-12-27
+
+[Написание отчета по проекту] as [OTCH] lasts 6 days and starts at 2021-12-30
+
+@endgantt

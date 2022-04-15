@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+partition Страница_просмотра_задач
+    start
+    :Вызов меню действий<
+    :Удалить<
+    :Удаление задачи;
+    stop
+}
+
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+'https://plantuml.com/use-case-diagram
+
+:Пользователь: as User
+
+User --> (Создание записей)
+User ---> (Редактирование записей)
+User --> (Управление состояниями задач)
+@enduml

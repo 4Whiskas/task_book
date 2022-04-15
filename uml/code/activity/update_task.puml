@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+
+partition Страница_просмотра_задач
+    start
+    :Вызов меню действий<
+    :Изменить<
+}
+partition Страница_редактирования_задачи
+     :Редакция заголовка;
+     if(Завершено) then (нет)
+     else (да)
+        if()
+        :Сохранить<
+        else
+        :Назад<
+        endif
+        stop
+     endif
+     :Редакция описания;
+          if(Завершено) then (нет)
+          else (да)
+             if()
+             :Сохранить<
+             else
+             :Назад<
+             endif
+             stop
+          endif
+     :Редакция дедлайна;
+             if()
+             :Сохранить<
+             else
+             :Назад<
+             endif
+             stop
+}
+
+
+
+@enduml

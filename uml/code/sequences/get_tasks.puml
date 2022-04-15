@@ -1,0 +1,11 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+CatalogScene -> CatalogCubit: Функция получения задач
+CatalogCubit -> AppDatabase: Запрос получния задач
+AppDatabase -> CatalogCubit: Список задач
+CatalogCubit -> CatalogScene: Список задач
+
+@enduml
