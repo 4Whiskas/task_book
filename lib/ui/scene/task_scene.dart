@@ -33,6 +33,7 @@ class TaskScene extends StatelessWidget {
           Controllers.descriptionCreatingNote.text = note!.description;
         }
         return Scaffold(
+          backgroundColor: AppColors.bodyColor,
           appBar: AppBar(
             backgroundColor: Colors.black,
             leading: IconButton(
@@ -72,44 +73,19 @@ class TaskScene extends StatelessWidget {
                   ))
             ],
           ),
-          body: Container(
-            padding: const EdgeInsets.all(30),
-            color: AppColors.bodyColor,
-            child: Column(
-              children: [
-                TextField(
-                  controller: Controllers.titleCreatingNote,
-                  style: AppTextStyles.baseText,
-                  maxLength: 20,
-                  decoration: InputDecoration(
-                    label: const Text(
-                      AppStrings.title,
-                      style: AppTextStyles.baseText,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                        borderSide: const BorderSide(color: Colors.white)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                        borderSide:
-                            const BorderSide(color: AppColors.borderColor)),
-                    errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5),
-                        borderSide: const BorderSide(color: Colors.red)),
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                SingleChildScrollView(
-                  child: TextField(
-                    controller: Controllers.descriptionCreatingNote,
+          body: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(30),
+              color: AppColors.bodyColor,
+              child: Column(
+                children: [
+                  TextField(
+                    controller: Controllers.titleCreatingNote,
                     style: AppTextStyles.baseText,
-                    textAlign: TextAlign.start,
-                    maxLines: 15,
+                    maxLength: 20,
                     decoration: InputDecoration(
                       label: const Text(
-                        AppStrings.description,
+                        AppStrings.title,
                         style: AppTextStyles.baseText,
                       ),
                       focusedBorder: OutlineInputBorder(
@@ -124,62 +100,89 @@ class TaskScene extends StatelessWidget {
                           borderSide: const BorderSide(color: Colors.red)),
                     ),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Text(
-                      AppStrings.deadline,
-                      style: AppTextStyles.baseText.copyWith(fontSize: 25),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  SingleChildScrollView(
+                    child: TextField(
+                      controller: Controllers.descriptionCreatingNote,
+                      style: AppTextStyles.baseText,
+                      textAlign: TextAlign.start,
+                      maxLines: 15,
+                      decoration: InputDecoration(
+                        label: const Text(
+                          AppStrings.description,
+                          style: AppTextStyles.baseText,
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: const BorderSide(color: Colors.white)),
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide:
+                                const BorderSide(color: AppColors.borderColor)),
+                        errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: const BorderSide(color: Colors.red)),
+                      ),
                     ),
-                    StatefulBuilder(builder: (context, setState) {
-                      return GestureDetector(
-                        onTap: () async {
-                          var dat = await showDatePicker(
-                              context: context,
-                              locale: const Locale("ru", "RU"),
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime.utc(2022),
-                              lastDate: DateTime.utc(2040),
-                              builder: (context, child) {
-                                return Theme(
-                                    data: ThemeData.dark().copyWith(
-                                      colorScheme: ColorScheme.dark().copyWith(
-                                        primary: AppColors.accentColor
-                                      ),
-                                      textButtonTheme: TextButtonThemeData(
-                                        style: TextButton.styleFrom(
-                                          primary: AppColors.accentColor,
-                                          textStyle: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight: FontWeight.bold,
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Text(
+                        AppStrings.deadline,
+                        style: AppTextStyles.baseText.copyWith(fontSize: 25),
+                      ),
+                      StatefulBuilder(builder: (context, setState) {
+                        return GestureDetector(
+                          onTap: () async {
+                            var dat = await showDatePicker(
+                                context: context,
+                                locale: const Locale("ru", "RU"),
+                                initialDate: DateTime.now(),
+                                firstDate: DateTime.utc(2022),
+                                lastDate: DateTime.utc(2040),
+                                builder: (context, child) {
+                                  return Theme(
+                                      data: ThemeData.dark().copyWith(
+                                        colorScheme: ColorScheme.dark().copyWith(
+                                          primary: AppColors.accentColor
+                                        ),
+                                        textButtonTheme: TextButtonThemeData(
+                                          style: TextButton.styleFrom(
+                                            primary: AppColors.accentColor,
+                                            textStyle: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.bold,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    child: child!);
-                              });
-                          setState(() {
-                            _savedDate = dat!;
-                            Controllers.dateController =
-                                Utils.dateFormatter(_savedDate);
-                          });
-                        },
-                        child: Text(
-                          Controllers.dateController,
-                          style: AppTextStyles.baseText.copyWith(
-                              decoration: TextDecoration.underline,
-                              fontSize: 25),
-                        ),
-                      );
-                    }),
-                  ],
-                ),
-              ],
+                                      child: child!);
+                                });
+                            setState(() {
+                              _savedDate = dat!;
+                              Controllers.dateController =
+                                  Utils.dateFormatter(_savedDate);
+                            });
+                          },
+                          child: Text(
+                            Controllers.dateController,
+                            style: AppTextStyles.baseText.copyWith(
+                                decoration: TextDecoration.underline,
+                                fontSize: 25),
+                          ),
+                        );
+                      }),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         );
