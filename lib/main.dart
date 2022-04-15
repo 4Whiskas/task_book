@@ -6,6 +6,7 @@ import 'package:task_meneger/cubit/navigation/cubit.dart';
 import 'package:task_meneger/cubit/task/cubit.dart';
 import 'package:task_meneger/data/database/app_database.dart';
 import 'package:task_meneger/ui/app_navigation.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() {
   runApp(const Starter());
@@ -25,6 +26,12 @@ class Starter extends StatelessWidget {
           BlocProvider<NavigationCubit>(create: (context)=>NavigationCubit())
         ],
         child: const MaterialApp(
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate
+          ],
+          supportedLocales: [
+            const Locale('ru'),
+          ],
           debugShowCheckedModeBanner: false,
           home: AppNavigation(),
         ),

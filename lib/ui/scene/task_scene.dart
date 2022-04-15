@@ -49,23 +49,22 @@ class TaskScene extends StatelessWidget {
             actions: [
               IconButton(
                   onPressed: () {
-                    if(note==null)
-                      {
-                        context.read<TaskCubit>().createTask(
-                            title: Controllers.titleCreatingNote.text,
-                            description: Controllers.descriptionCreatingNote.text,
-                            state: "ToDo",
-                            deadline: _savedDate,
-                            context: context);
-                      }
-                    else{
-                      context.read<TaskCubit>().updateTask(title: Controllers.titleCreatingNote.text,
+                    if (note == null) {
+                      context.read<TaskCubit>().createTask(
+                          title: Controllers.titleCreatingNote.text,
+                          description: Controllers.descriptionCreatingNote.text,
+                          state: "ToDo",
+                          deadline: _savedDate,
+                          context: context);
+                    } else {
+                      context.read<TaskCubit>().updateTask(
+                          title: Controllers.titleCreatingNote.text,
                           description: Controllers.descriptionCreatingNote.text,
                           state: note!.state,
                           deadline: _savedDate,
-                          context: context, id: note!.id);
+                          context: context,
+                          id: note!.id);
                     }
-
                   },
                   icon: const Icon(
                     Icons.done,
@@ -133,24 +132,48 @@ class TaskScene extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    Text(AppStrings.deadline, style: AppTextStyles.baseText.copyWith(fontSize: 25),),
+                    Text(
+                      AppStrings.deadline,
+                      style: AppTextStyles.baseText.copyWith(fontSize: 25),
+                    ),
                     StatefulBuilder(builder: (context, setState) {
                       return GestureDetector(
                         onTap: () async {
                           var dat = await showDatePicker(
                               context: context,
+                              locale: const Locale("ru", "RU"),
                               initialDate: DateTime.now(),
                               firstDate: DateTime.utc(2022),
-                              lastDate: DateTime.utc(2040));
+                              lastDate: DateTime.utc(2040),
+                              builder: (context, child) {
+                                return Theme(
+                                    data: ThemeData.dark().copyWith(
+                                      colorScheme: ColorScheme.dark().copyWith(
+                                        primary: AppColors.accentColor
+                                      ),
+                                      textButtonTheme: TextButtonThemeData(
+                                        style: TextButton.styleFrom(
+                                          primary: AppColors.accentColor,
+                                          textStyle: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    child: child!);
+                              });
                           setState(() {
                             _savedDate = dat!;
-                            Controllers.dateController = Utils.dateFormatter(_savedDate);
+                            Controllers.dateController =
+                                Utils.dateFormatter(_savedDate);
                           });
                         },
                         child: Text(
                           Controllers.dateController,
                           style: AppTextStyles.baseText.copyWith(
-                              decoration: TextDecoration.underline, fontSize: 25),
+                              decoration: TextDecoration.underline,
+                              fontSize: 25),
                         ),
                       );
                     }),
